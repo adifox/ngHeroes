@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-md-12">
+    <h3>Heros List Component</h3>
+    <app-hero
+      *ngFor="let hero of heroes"
+      [hero]="hero"
+      [id]="hero.id"></app-hero>
+  </div>
+</div>
