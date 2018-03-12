@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-6 col-md-4" >
-    <div class="thumbnail">
+    <div class="thumbnail" *ngIf="heroesInTheList; else errorMessage">
       <img [src]="heroDetail.imgPath" alt="{{heroDetail.alias}}">
       <div class="caption">
         <h3>Hero Info</h3>
@@ -9,6 +9,19 @@
         <p>Powers: {{heroDetail.powers}}</p>
       </div>
     </div>
+    <ng-template #errorMessage>
+      <div class="thumbnail">
+        <img
+          src="https://hulksmash.world/wp-content/uploads/2017/06/HulkSmashLettersGrad.png"
+          alt="error-image">
+        <div class="caption">
+          <h3>Hero Info</h3>
+          <p>Error: There are no more Heroes</p>
+        </div>
+      </div>
+    </ng-template>
   </div>
   </div>
 </div>
+
+

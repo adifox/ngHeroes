@@ -10,6 +10,7 @@ import { DataStorageService } from '../../../services/data.storage.service';
 export class HeroDetailComponent implements OnInit {
   heroDetail;
   id: number;
+  heroesInTheList = true;
 
   constructor(private dataStorageService: DataStorageService,
               private route: ActivatedRoute) { }
@@ -17,14 +18,18 @@ export class HeroDetailComponent implements OnInit {
   ngOnInit() {
     this.route.params
       .subscribe((params) => {
-        this.getHeroDetail(params['id']);
+        this.getHeroDetail(+params['id']);
       });
   }
 
   getHeroDetail(id) {
     this.heroDetail = this.dataStorageService.getData()
       .subscribe((res) => {
-        this.heroDetail = res['heroDetails'][id - 1];
+        if (id > res['heroDetails'].length) {
+          this.heroesInTheList = false;
+        } else {
+          this.heroDetail = res['heroDetails'][id - 1];
+        }
       });
   }
 }
