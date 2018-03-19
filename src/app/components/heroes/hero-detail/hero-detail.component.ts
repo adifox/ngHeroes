@@ -8,8 +8,7 @@ import { DataStorageService } from '../../../services/data.storage.service';
   templateUrl: './hero-detail.component.html'
 })
 export class HeroDetailComponent implements OnInit {
-  heroDetail;
-  id: number;
+  heroDetail = {};
   heroesInTheList = true;
 
   constructor(private dataStorageService: DataStorageService,
@@ -17,8 +16,9 @@ export class HeroDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.params
-      .subscribe((params) => {
-        this.getHeroDetail(+params['id']);
+    .subscribe((params: Params) => {
+      this.getHeroDetail(+params['id']);
+      console.log('triggering');
       });
   }
 
